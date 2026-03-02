@@ -1,3 +1,4 @@
+
 # Study With Me (SWM)
 Es una aplicación web creada para facilitar el aprendizaje a los futuros líderes.
 
@@ -23,3 +24,15 @@ Para garantizar el éxito y la entrega puntual de la aplicación 'Study With Me'
 - Sprint 10 - Testeo y adaptación: Se realizaron pruebas finales de todas las funcionalidades, resolviendo problemas restantes y ajustando detalles finales del proyecto.
 - Sprint 11 - Resolución: Se realizó una comparación entre el estado actual de la aplicación con los objetivos establecidos en un principio antes de la entrega final del proyecto.
 - Sprint 12 - Presentación: Preparamos herramientas en base a nuestra aplicación para presentarsela a los posibles clientes.
+## Documentacion
+
+La documentacion funcional y tecnica del proyecto se encuentra en la carpeta [`documentacion`](documentacion/README.md).
+
+Contenido principal:
+
+- Vision general del proyecto
+- Puesta en marcha local
+- Arquitectura backend y frontend
+- Funcionalidades por rol
+- Modelo de datos y script SQL
+- Mapa de carpetas y observaciones tecnicas
