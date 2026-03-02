@@ -1,38 +1,194 @@
+# Study With Me
 
-# Study With Me (SWM)
-Es una aplicación web creada para facilitar el aprendizaje a los futuros líderes.
+<p align="center">
+  <img src="src/main/resources/static/images/logos/logoSinFondo.png" alt="Study With Me logo" width="220">
+</p>
+
+Plataforma web educativa desarrollada como Trabajo de Fin de Grado para la gestion academica por roles. El proyecto permite trabajar con perfiles de `administrador`, `profesor` y `alumno`, cada uno con vistas, rutas y permisos diferenciados dentro de la aplicacion.
+
+## Descripcion
+
+`Study With Me` es una aplicacion web construida con `Spring Boot`, `Thymeleaf` y `MySQL` orientada a centralizar operaciones academicas como:
+
+- gestion de alumnos, profesores, cursos, asignaturas y tareas
+- autenticacion y autorizacion por roles
+- consulta de asignaturas asociadas al usuario autenticado
+- visualizacion de tareas, tablones, calendario y perfiles
+- administracion de datos desde un panel interno
+
+## Stack tecnologico
+
+- `Java 17`
+- `Spring Boot 3.2.1`
+- `Spring MVC`
+- `Spring Security`
+- `Spring Data JPA`
+- `Thymeleaf`
+- `MySQL`
+- `Maven`
+- `Bootstrap 5`
+- `Bootstrap Icons`
+
+## Funcionalidades principales
+
+### Administrador
+
+- alta, edicion, listado y borrado de alumnos
+- alta, edicion, listado y borrado de profesores
+- alta, edicion, listado y borrado de administradores
+- alta, edicion, listado y borrado de cursos
+- alta, edicion, listado y borrado de asignaturas
+- alta, edicion, listado y borrado de tareas
+
+### Profesor
+
+- consulta de asignaturas asignadas
+- acceso al perfil personal
+- visualizacion del tablon de tareas por asignatura
+- consulta de personas vinculadas a una asignatura
+- creacion y modificacion de tareas
+- calificacion de tareas
+
+### Alumno
+
+- consulta de asignaturas matriculadas
+- acceso al perfil personal
+- visualizacion del tablon de asignatura
+- consulta de calendario
+- visualizacion de tareas y detalle de cada tarea
+- consulta de profesorado y companeros por asignatura
+
+## Arquitectura
+
+La aplicacion sigue un enfoque MVC clasico:
+
+- `controllers`: gestion de rutas HTTP y vistas
+- `services`: logica de apoyo para consultas funcionales
+- `repository`: acceso a datos con Spring Data JPA
+- `entity`: mapeo ORM con las tablas de MySQL
+- `templates`: vistas Thymeleaf renderizadas en servidor
+- `static`: estilos, scripts e imagenes
+
+## Estructura del proyecto
+
+```text
+.
+|-- database/
+|   `-- studywithme.sql
+|-- documentacion/
+|-- src/
+|   |-- main/
+|   |   |-- java/com/example/swm/
+|   |   |-- resources/templates/
+|   |   `-- resources/static/
+|   `-- test/
+|-- pom.xml
+|-- package.json
+`-- README.md
+```
+
+## Instalacion
+
+### 1. Requisitos
+
+- `Java 17`
+- `MySQL`
+- `Node.js` opcional para dependencias frontend
+
+### 2. Configurar la base de datos
+
+Ejecuta el script:
+
+```sql
+database/studywithme.sql
+```
+
+La configuracion actual de desarrollo esta en `src/main/resources/application.properties`:
+
+```properties
+server.port=8080
+spring.datasource.url=jdbc:mysql://localhost:3306/studywithme
+spring.datasource.username=root
+spring.datasource.password=curso
+```
+
+### 3. Arrancar la aplicacion
+
+En Windows:
+
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+En Linux o macOS:
+
+```bash
+./mvnw spring-boot:run
+```
+
+### 4. Ejecutar tests
+
+```powershell
+.\mvnw.cmd test
+```
+
+## Acceso local
+
+- Home: `http://localhost:8080/`
+- Login: `http://localhost:8080/login`
+
+## Seguridad
+
+La autenticacion se apoya en `Spring Security` y `JdbcUserDetailsManager`, tomando usuarios desde tres tablas distintas:
+
+- `administradores`
+- `profesores`
+- `alumnos`
+
+Cada tipo de usuario recibe un rol diferente:
+
+- `ROLE_ADMINISTRADOR`
+- `ROLE_PROFESOR`
+- `ROLE_ALUMNO`
+
+## Base de datos
+
+El modelo relacional incluye tablas principales y tablas de enlace para representar relaciones muchos a muchos entre usuarios, cursos, asignaturas y tareas.
+
+Tablas principales:
+
+- `administradores`
+- `profesores`
+- `alumnos`
+- `cursos`
+- `asignaturas`
+- `tareas`
+
+Tablas de enlace destacadas:
+
+- `alumno_asignatura`
+- `profesor_asignatura`
+- `alumnos_tarea`
+- `profesor_tarea`
+- `tarea_asignatura`
+- `tarea_curso`
+
+## Capturas y recursos visuales
+
+Actualmente el repositorio incluye recursos graficos del proyecto usados por la interfaz. Esta seccion puede ampliarse despues con capturas reales de la aplicacion en ejecucion.
 
 
-Este trabajo de fin de grado es una aplicación web llamada ‘Study With Me’ creada para todo tipo de dispositivos como pueden ser móviles, tabletas, ordenadores, entre otros. La aplicación web ha sido creada con tecnologías como Java y MySQL.
-‘Study With Me’ es una aplicación web creada para facilitar el aprendizaje y el desarrollo personal y profesional de nuestos futuros líderes. En la aplicación encontraremos diferentes tipos de contenido en base al tipo de usuario que seas. La aplicación contará con distintos tipos de usuarios con sus sesiones y limitaciones.
-Muchos centros de estudios utilizan softwares como Classroom, Teams, u otras opciones tecnológicas para gestionar los centros de estudios, el problema, es que en muchos casos no se aprovecha el software al 100% o es demasiado costoso o abrumador para el usuario debido a su experiencia. Muchos padres a partir de la cuarentena de 2020 se han visto obligados a aprender nuevas tecnologías y a adaptarse a que los centros educativos utilicen software para organizar los estudios de sus hijos. No todos los padres saben gestionar estos softwares y no todos los alumnos saben manejar las tecnologías. 
-StudyWithMe les ofrece formación a los padres sobre el software educativo para poder ayudar a sus hijos con los estudios, a los alumnos les ofrece la posibilidad de una experiencia más cercana con los formadores, la plataforma se adapta a todos los dispositivos y cualquier centro educativo. 
-El software contará con diferentes tecnologías y herramientas las cuales el cliente podrá elegir en base a sus necesidades y la aplicación que se le ofrece al cliente estará completamente preparada con los requisitos previstos. 
+## Documentacion tecnica
 
+La documentacion detallada del proyecto esta en [`documentacion/`](documentacion/README.md).
 
-Para garantizar el éxito y la entrega puntual de la aplicación 'Study With Me', decidí implementar la metodología Scrum Agile. Esta metodología ofrece un marco de trabajo flexible basado en ciclos de trabajo llamados sprints. A continuación, detallaré los sprints que llevé a cabo en el proyecto, algunos de los cuales se realizaron simultáneamente:
+- [Puesta en marcha](documentacion/01-puesta-en-marcha.md)
+- [Arquitectura](documentacion/02-arquitectura.md)
+- [Funcionalidades y rutas](documentacion/03-funcionalidades-y-rutas.md)
+- [Base de datos](documentacion/04-base-de-datos.md)
+- [Mapa del proyecto](documentacion/05-mapa-del-proyecto.md)
+- [Observaciones tecnicas](documentacion/06-observaciones-tecnicas.md)
 
-- Sprint 1 - Organización de las tareas: Nos enfocamos en planificar detalladamente el proyecto, identificar tareas y asignar responsabilidades. Establecimos la base para el desarrollo posterior.
-- Sprint 2 - Investigación y diseño: Invertimos tiempo en investigar tecnologías, herramientas y métodos para la implementación del proyecto, así como a elaborar el diseño del proyecto.
-- Sprint 3 - Búsqueda de referencias: Nuestro objetivo consiste en recopilar y analizar referencias, casos de estudio o aplicaciones similares que sirvieran como base para el desarrollo de ‘Study With Me’ .
-- Sprint 4 - Preparar entorno de desarrollo: Se configuró el repositorio de código  que utilizamos basándonos en la metodología Scrum Agile. Establecimos las versiones de las herramientas que utilizaremos en el proyecto.
-- Sprint 5 - Etapa 1 de desarrollo: Empezamos la primera etapa del desarrollo del proyecto, implementando las primeras funcionalidades principales según lo planeado y diseñado en los sprints anteriores.
-- Sprint 6 - Testeo y adaptación: Invertimos tiempo en realizar pruebas iniciales de las funcionalidades desarrolladas, así como ajustes y adaptaciones basadas en los resultados de las pruebas.
-- Sprint 7 - Etapa 2 de desarrollo: Analizamos el resultado de los Sprints anteriores e hicimos retroalimentación. Continuamos con el desarrollo añadiendo funcionalidades o mejoras al proyecto.
-- Sprint 8 - Testeo y adaptación: Se realizaron pruebas centradas en las nuevas funcionalidades implementadas durante la Etapa 2 de desarrollo.
-- Sprint 9 - Etapa 3 de desarrollo: Se retomó el desarrollo con la implementación de características finales o refinamientos significativos del proyecto.
-- Sprint 10 - Testeo y adaptación: Se realizaron pruebas finales de todas las funcionalidades, resolviendo problemas restantes y ajustando detalles finales del proyecto.
-- Sprint 11 - Resolución: Se realizó una comparación entre el estado actual de la aplicación con los objetivos establecidos en un principio antes de la entrega final del proyecto.
-- Sprint 12 - Presentación: Preparamos herramientas en base a nuestra aplicación para presentarsela a los posibles clientes.
-## Documentacion
+## Estado actual
 
-La documentacion funcional y tecnica del proyecto se encuentra en la carpeta [`documentacion`](documentacion/README.md).
-
-Contenido principal:
-
-- Vision general del proyecto
-- Puesta en marcha local
-- Arquitectura backend y frontend
-- Funcionalidades por rol
-- Modelo de datos y script SQL
-- Mapa de carpetas y observaciones tecnicas
+El proyecto dispone de base funcional completa para un entorno academico y de una estructura clara por capas. Como linea de mejora, conviene reforzar testing, revisar algunos prefijos de rutas y homogeneizar ciertos aspectos de configuracion y seguridad.
